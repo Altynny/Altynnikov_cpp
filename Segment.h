@@ -3,8 +3,8 @@
 
 class Segment {
 public:
-	Point a, b;
-	double length;
+	Point a, b; //координаты начала и конца
+	double length; //длина
 	Segment();
 	Segment(Point _a, Point _b);
 };

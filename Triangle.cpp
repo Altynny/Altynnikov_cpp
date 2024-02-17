@@ -14,3 +14,12 @@ Triangle::Triangle(Point _a, Point _b, Point _c) {
 	ac = Segment(_a, _c);
 	area = areaBySeg(ab, bc, ac);
 }
+
+ostream& operator <<(ostream& out, const Triangle& tr) {
+	out << tr.a << ' ' << tr.b << ' ' << tr.c << ' ' << tr.area;
+	return out;
+}
+
+bool Triangle::operator >(const Triangle& tr) {
+	return area > tr.area;
+}

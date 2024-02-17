@@ -3,16 +3,58 @@
 
 #include <iostream>
 #include "Geometry.h"
+#include <fstream>
+#include <locale.h>
 
 using namespace std;
 
 int main()
 {
-    Point a(3, 0), b(2, 4), c(1.5, 5);
-    Triangle tr(a, b, c) ;
-    Segment seg(a, b);
+    setlocale(LC_ALL, "Russian");
 
-    cout << tr.area;
+    //проверяем наличие файла
+    ifstream check("Points.txt"); 
+    if (!check.is_open()) {
+        cout << "Ошибка чтения из файла";
+        return -1;
+    }
+        
+    //считаем  количество точек в нём для создания массива
+    double x, y;
+    int pNum;
+    for (pNum = 0; ; pNum++) {
+        check >> x >> y;
+        if (check.fail()) break;
+    }
+    check.close();
+
+    if (pNum < 4) {
+        cout << "Файл содержит слишком мало точек для исполнения";
+        return -2;
+    }
+
+    //создаём массив для точек и трёх максимальных треугольников
+    Point* pArr = new Point[pNum];
+    Triangle trArr[3];
+
+    //заполняем массив точек
+    ifstream in("Points.txt");
+    for (int i = 0; i < pNum; i++) in >> pArr[i];
+    in.close();
+
+    //тройным циклом проверяем треугольники из всех сочетаний точек
+    for (int a = 0; a < pNum-2; a++)
+        for (int b = a+1; b < pNum-1; b++)
+            for (int c = b + 1; c < pNum; c++) {
+                Triangle tr(pArr[a], pArr[b], pArr[c]); //создаём треугольник
+                for (int i = 0; i < 3; i++) //сравниваем треугольник с элементами массива максимальных треугольников
+                    if (tr > trArr[i]) {
+                        trArr[i] = tr;
+                        break;
+                    }    
+            }
+    for (int i = 0; i < 3; i++) cout << trArr[i] << endl;
+    return 1;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"

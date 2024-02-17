@@ -1,10 +1,10 @@
-#include "Triangle.h"
-#include "Point.h"
+#include "Geometry.h"
 #include <math.h>
 //расстояние по теореме Пифагора
 double distance(const Point& p1, const Point& p2) {
 	return sqrt((p1.x - p2.x)* (p1.x - p2.x)+ (p1.y - p2.y) * (p1.y - p2.y));
 }
+
 //высчитывание площади по формуле Герона
 double areaBySeg(const Segment& a, const Segment& b, const Segment& c) { 
 	double p2 = (a.length + b.length + c.length) / 2.0; //полупериметр по длине сторон
