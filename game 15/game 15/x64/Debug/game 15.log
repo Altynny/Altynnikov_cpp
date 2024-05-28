@@ -1,0 +1,5 @@
+﻿  Box.cpp
+  game 15.cpp
+C:\Users\altyn\Desktop\C++ h-works\game 15\game 15\Box.cpp(56,12): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+  Создание кода...
+  game 15.vcxproj -> C:\Users\altyn\Desktop\C++ h-works\game 15\x64\Debug\game 15.exe
